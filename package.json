@@ -1,0 +1,22 @@
+{
+  "name": "aryan-3d",
+  "version": "1.0.0",
+  "description": "aryan is very cool",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryan-mann/webgl-3d.git"
+  },
+  "devDependencies": {
+    "serve": "^11.3.0"
+  },
+  "author": "Aryan Mann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aryan-mann/webgl-3d/issues"
+  },
+  "homepage": "https://github.com/aryan-mann/webgl-3d#readme"
+}
