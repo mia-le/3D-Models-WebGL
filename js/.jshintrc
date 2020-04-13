@@ -44,7 +44,8 @@
     "ProgramReflection" : true,
     "Geometry" : true,    
     "GameObject" : true,    
-    "Mesh" : true,        
+    "Mesh" : true,
+    "MultiMesh" : true,
     "Material" : true,            
     "App" : true,
     "keyNames" : true,            
@@ -52,8 +53,9 @@
     "Scene" : true,                   
     "Shader" : true,                   
     "OrthoCamera" : true,                       
-    "TriangleGeometry" : true,                       
-    "QuadGeometry" : true,                       
+    "PerspectiveCamera" : true,
+    "TriangleGeometry" : true,
+    "SubmeshGeometry" : true,
     "module" : true
   }
 }

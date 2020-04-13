@@ -16,28 +16,24 @@ class Scene extends UniformProvider {
 		this.timeAtFirstFrame = new Date().getTime();
 		this.timeAtLastFrame = this.timeAtFirstFrame;
 
+		gl.enable(gl.DEPTH_TEST);
+
 		this.LoadScene();
 	}
 
 	LoadScene() {
-		for (let i = 0; i < 50; i++) {
-			this.addGameObject(
-				new GameObject(Meshes.USA, `usa-${i}`).apply((me) => {
-					me.position.setRandom(
-						new Vec3(-10, -10, 0.0),
-						new Vec3(10, 10, 0.0)
-					);
-				})
-			)
-		}
+		this.avatar = new GameObject(Meshes.slowpoke, `slowpoke`);
+		this.addGameObject(this.avatar);
+		this.avatar.scale.set(0.1,0.1,0.1);
+		this.avatar.yaw = 1.5;
 
-		this.camera = new OrthoCamera(...this.programs);
+		this.camera = new PerspectiveCamera(...this.programs);
 		this.addComponentsAndGatherUniforms(...this.programs);
 	}
 
 	onAllGameObjects(fnc) {
 		for (const gameObject of this.gameObjectsArray) {
-			fnc(gameObject)
+			fnc(gameObject);
 		}
 	}
 
@@ -82,6 +78,9 @@ class Scene extends UniformProvider {
 		this.deltaTime = dt;
 		this.time = t;
 
+		//Camera
+		this.camera.move(dt,keysPressed);
+
 		// Example -- can remove!
 		this.onAllGameObjects((x) => {
 			if (keysPressed.A) {
@@ -105,12 +104,5 @@ class Scene extends UniformProvider {
 			// draw the GameObject
 			x.draw(this, this.camera);
 		});
-
-		// for (const gameObject of this.gameObjectsArray) {
-		// 	gameObject.update();
-		// }
-		// for (const gameObject of this.gameObjectsArray) {
-		// 	gameObject.draw(this, this.camera);
-		// }
 	}
 }

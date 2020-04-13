@@ -20,7 +20,11 @@ function LoadShadersAndPrograms(gl) {
 	Shaders.Fragment.Textured = new Shader(gl, gl.FRAGMENT_SHADER, "textured-fs.glsl");
 	Shaders.Vertex.Textured = new Shader(gl, gl.VERTEX_SHADER, "textured-vs.glsl");
 
+	Shaders.Fragment.Environment = new Shader(gl, gl.FRAGMENT_SHADER, "environment-fs.glsl");
+	Shaders.Vertex.Environment = new Shader(gl, gl.VERTEX_SHADER, "environment-vs.glsl");
+
 	// Make Programs with those Shaders
 	Programs.Textured = new TexturedProgram(gl, Shaders.Vertex.Textured, Shaders.Fragment.Textured);
+	Programs.EnvironmentCube = new EnvironmentCubeProgram(gl, Shaders.Vertex.Environment, Shaders.Fragment.Environment);
 
 }

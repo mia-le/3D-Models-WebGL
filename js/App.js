@@ -46,17 +46,17 @@ class App{
       this.keysPressed[keyNames[event.keyCode]] = false;    
     };
     this.canvas.onmousedown = (event) => {
-      //jshint unused:false
+      this.scene.camera.mouseDown();
     };
     this.canvas.onmousemove = (event) => {
-      //jshint unused:false
+      this.scene.camera.mouseMove(event);
       event.stopPropagation();
     };
     this.canvas.onmouseout = (event) => {
       //jshint unused:false
     };
     this.canvas.onmouseup = (event) => {
-      //jshint unused:false
+      this.scene.camera.mouseUp();
     };
     window.addEventListener('resize', () => this.resize() );
     window.requestAnimationFrame( () => this.update() );
