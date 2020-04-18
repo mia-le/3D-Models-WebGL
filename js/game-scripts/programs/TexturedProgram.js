@@ -1,7 +1,6 @@
 "use strict";
 /* exported TexturedProgram */
 class TexturedProgram extends UniformProvider {
-
   constructor(gl, vertexShader, fragmentShader) {
     super("program");
 
@@ -14,6 +13,7 @@ class TexturedProgram extends UniformProvider {
     gl.bindAttribLocation(this.glProgram, 0, 'vertexPosition');
     gl.bindAttribLocation(this.glProgram, 1, 'vertexNormal');  
     gl.bindAttribLocation(this.glProgram, 2, 'vertexTexCoord');
+    gl.bindAttribLocation(this.glProgram, 3, 'nsc');
 
     gl.linkProgram(this.glProgram);
     if (!gl.getProgramParameter(this.glProgram, gl.LINK_STATUS)) {

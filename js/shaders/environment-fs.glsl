@@ -4,16 +4,13 @@ precision highp float;
 out vec4 fragmentColor;
 in vec4 color;
 in vec4 tex;
-
-uniform struct {
-  mat4 rayDirMatrix;
-} camera;
+in vec4 rayDir;
 
 uniform struct{
   samplerCube envTexture;
 } material;
 
 void main(void) {
-  fragmentColor = texture ( material.envTexture, camera.rayDirMatrix.xyz);
+  fragmentColor = texture ( material.envTexture, rayDir.xyz);
 }
 `;

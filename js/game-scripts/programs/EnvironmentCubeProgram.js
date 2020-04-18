@@ -14,6 +14,7 @@ class EnvironmentCubeProgram extends UniformProvider {
         gl.bindAttribLocation(this.glProgram, 0, 'vertexPosition');
         gl.bindAttribLocation(this.glProgram, 1, 'vertexNormal');
         gl.bindAttribLocation(this.glProgram, 2, 'vertexTexCoord');
+        gl.bindAttribLocation(this.glProgram, 3, 'nsc');
 
         gl.linkProgram(this.glProgram);
         if (!gl.getProgramParameter(this.glProgram, gl.LINK_STATUS)) {

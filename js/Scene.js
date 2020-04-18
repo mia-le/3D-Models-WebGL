@@ -24,8 +24,19 @@ class Scene extends UniformProvider {
 	LoadScene() {
 		this.avatar = new GameObject(Meshes.slowpoke, `slowpoke`);
 		this.addGameObject(this.avatar);
-		this.avatar.scale.set(0.1,0.1,0.1);
+		this.avatar.position.set(0.5,0.0,0.0);
+		this.avatar.scale.set(0.03,0.03,0.03);
 		this.avatar.yaw = 1.5;
+
+		this.woodAvatar = new GameObject(Meshes.woodSlowpoke, `woodSlowpoke`);
+		this.addGameObject(this.avatar);
+		this.woodAvatar.position.set(0.25,0.0,0.0);
+		this.woodAvatar.scale.set(0.03,0.03,0.03);
+		this.woodAvatar.yaw = 1.5;
+
+		this.fullViewport = new GameObject(Meshes.heroesBackground, `heroes_cube`);
+		this.fullViewport.update = () => {};
+		this.addGameObject(this.fullViewport);
 
 		this.camera = new PerspectiveCamera(...this.programs);
 		this.addComponentsAndGatherUniforms(...this.programs);
@@ -80,16 +91,7 @@ class Scene extends UniformProvider {
 
 		//Camera
 		this.camera.move(dt,keysPressed);
-
-		// Example -- can remove!
-		this.onAllGameObjects((x) => {
-			if (keysPressed.A) {
-				x.position.x -= (dt * 2.0);
-			}
-			if (keysPressed.D) {
-				x.position.x += (dt * 2.0);
-			}
-		});
+		this.avatar.move(keysPressed);
 
 		// clear the screen
 		gl.clearColor(0.3, 0.0, 0.0, 1.0);

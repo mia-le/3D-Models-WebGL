@@ -4,6 +4,17 @@ class TexturedQuadGeometry {
   constructor(gl) {
     this.gl = gl;
 
+      this.rayDirectionBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.rayDirectionBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER,
+          new Float32Array([
+              -1.0, -1.0,
+              -1.0, 1.0,
+              1.0, -1.0,
+              1.0, 1.0,
+          ]),
+          gl.STATIC_DRAW);
+
     // allocate and fill vertex buffer in device memory (OpenGL name: array buffer)
     this.vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
@@ -77,15 +88,15 @@ class TexturedQuadGeometry {
       false, //< do not normalize (make unit length)
       0, //< tightly packed
       0 //< data starts at array start
-    );     
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexTexCoordBuffer); 
-    gl.enableVertexAttribArray(2); 
-    gl.vertexAttribPointer(2, 
-      2, gl.FLOAT, //< two pieces of float 
-      false, //< do not normalize (make unit length) 
-      0, //< tightly packed 
-      0 //< data starts at array start 
-    ); 
+    );
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.rayDirectionBuffer);
+      gl.enableVertexAttribArray(3);
+      gl.vertexAttribPointer(3,
+          2, gl.FLOAT, //< two pieces of float
+          false, //< do not normalize (make unit length)
+          0, //< tightly packed
+          0 //< data starts at array start
+      );
 
     gl.bindVertexArray(null);
   }

@@ -29,6 +29,23 @@ class GameObject extends UniformProvider {
   	return this;
   }
 
+    move(keyPressed){
+        let moveVec = new Vec3(0,0,0);
+        if(keyPressed["UP"] ===true){
+            moveVec.y= 0.01;
+        }
+        if(keyPressed["DOWN"]===true){
+            moveVec.y -= 0.01;
+        }
+        if(keyPressed["LEFT"]===true){
+            moveVec.x = 0.01;
+        }
+        if(keyPressed["RIGHT"] ===true){
+            moveVec.x -= 0.01;
+        }
+        this.position.add(moveVec);
+    }
+
   update() {
   	this.modelMatrix.set().
   		scale(this.scale).
