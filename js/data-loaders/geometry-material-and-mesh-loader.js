@@ -26,8 +26,8 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 
 	Materials.Wood = () => {
 		const mat = new Material(Programs.Wood);
-		mat.lightWoodColor = new Vec3(1.0,0.0,0.0);
-		mat.darkWoodColor = new Vec3(1.0,1.0,0.0);
+		mat.lightWoodColor.set(new Vec4(1.0,0.0,0.0, 1.0));
+		mat.darkWoodColor.set(new Vec4(1.0,1.0,0.0, 1.0));
 		mat.freq = 0.3;
 		mat.noiseFreq = 0.3;
 		mat.noiseExp = 2;

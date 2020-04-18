@@ -7,8 +7,8 @@ out vec4 modelPosition;
 uniform struct{
   vec4 solidColor;
   sampler2D colorTexture;
-  vec3 lightWoodColor;
-  vec3 darkWoodColor;
+  vec4 lightWoodColor;
+  vec4 darkWoodColor;
   float freq;
   float noiseFreq;
   float noiseExp;

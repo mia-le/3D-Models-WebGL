@@ -9,8 +9,8 @@ in vec4 modelPosition;
 uniform struct{
   vec4 solidColor;
   sampler2D colorTexture;
-  vec3 lightWoodColor;
-  vec3 darkWoodColor;
+  vec4 lightWoodColor;
+  vec4 darkWoodColor;
   float freq;
   float noiseFreq;
   float noiseExp;
@@ -40,9 +40,9 @@ void main(void) {
   * material.noiseAmp
   );
 
-  vec3 color = mix( material.lightWoodColor,
+  vec4 color = mix( material.lightWoodColor,
   material.darkWoodColor, w);
 
-  fragmentColor.xyz = color;
+  fragmentColor = color;
 }
 `;
