@@ -4,17 +4,6 @@ in vec4 vertexTexCoord;
 out vec4 tex; // passed to FS
 out vec4 modelPosition;
 
-uniform struct{
-  vec4 solidColor;
-  sampler2D colorTexture;
-  vec4 lightWoodColor;
-  vec4 darkWoodColor;
-  float freq;
-  float noiseFreq;
-  float noiseExp;
-  float noiseAmp;
-} material;
-
 uniform struct {
   mat4 modelMatrix;
 } gameObject;

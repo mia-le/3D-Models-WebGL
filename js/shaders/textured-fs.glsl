@@ -1,4 +1,4 @@
-Shader.source[document.currentScript.src.split('js/shaders/')[1]] = `#version 300 es 
+Shader.source[document.currentScript.src.split('js/shaders/')[1]] = `#version 300 es
   precision highp float;
 
   out vec4 fragmentColor;
@@ -9,12 +9,6 @@ Shader.source[document.currentScript.src.split('js/shaders/')[1]] = `#version 30
 uniform struct{
   vec4 solidColor;
   sampler2D colorTexture;
-  vec4 lightWoodColor;
-  vec4 darkWoodColor;
-  float freq;
-  float noiseFreq;
-  float noiseExp;
-  float noiseAmp;
 } material;
 
   uniform struct {

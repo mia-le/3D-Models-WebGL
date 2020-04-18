@@ -28,10 +28,10 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 		const mat = new Material(Programs.Wood);
 		mat.lightWoodColor.set(new Vec4(1.0,0.0,0.0, 1.0));
 		mat.darkWoodColor.set(new Vec4(1.0,1.0,0.0, 1.0));
-		mat.freq = 0.3;
-		mat.noiseFreq = 0.3;
-		mat.noiseExp = 2;
-		mat.noiseAmp = 2;
+		mat.freq = 3;
+		mat.noiseFreq = 20;
+		mat.noiseExp = 1.0;
+		mat.noiseAmp = 7;
 		return mat;
 	};
 
@@ -50,9 +50,9 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 		[Materials.Textured("/media/slowpoke/YadonDh.png"),Materials.Textured("/media/slowpoke/YadonEyeDh.png")]
 	)
 
-	Meshes.woodSlowpoke = new MultiMesh(
+	Meshes.woodBall = new MultiMesh(
 		gl,
-		"media/slowpoke/slowpoke.json",
+		"media/ball/ball.json",
 		[Materials.Wood()]
 	)
 

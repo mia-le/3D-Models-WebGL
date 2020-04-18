@@ -24,13 +24,13 @@ class Scene extends UniformProvider {
 	LoadScene() {
 		this.avatar = new GameObject(Meshes.slowpoke, `slowpoke`);
 		this.addGameObject(this.avatar);
-		this.avatar.position.set(0.5,0.0,0.0);
+		this.avatar.position.set(-0.5,-0.1,0.0);
 		this.avatar.scale.set(0.03,0.03,0.03);
 		this.avatar.yaw = 1.5;
 
-		this.woodAvatar = new GameObject(Meshes.woodSlowpoke, `woodSlowpoke`);
+		this.woodAvatar = new GameObject(Meshes.woodBall, `woodSlowpoke`);
 		this.addGameObject(this.woodAvatar);
-		this.woodAvatar.position.set(0.25,0.0,0.0);
+		this.woodAvatar.position.set(-0.25,-0.1,0.0);
 		this.woodAvatar.scale.set(0.03,0.03,0.03);
 		this.woodAvatar.yaw = 1.5;
 
