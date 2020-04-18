@@ -29,7 +29,7 @@ class Scene extends UniformProvider {
 		this.avatar.yaw = 1.5;
 
 		this.woodAvatar = new GameObject(Meshes.woodSlowpoke, `woodSlowpoke`);
-		this.addGameObject(this.avatar);
+		this.addGameObject(this.woodAvatar);
 		this.woodAvatar.position.set(0.25,0.0,0.0);
 		this.woodAvatar.scale.set(0.03,0.03,0.03);
 		this.woodAvatar.yaw = 1.5;
