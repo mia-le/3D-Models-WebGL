@@ -10,12 +10,17 @@ uniform struct {
 
 uniform struct {
   mat4 viewProjMatrix;
-  mat4 shadowMatrix;
 } camera;
+
+uniform struct {
+  mat4 shadowMatrix;
+  float time;
+} scene;
+
 
 void main(void) {
   tex = vertexTexCoord;
   modelPosition = vertexPosition;
-  gl_Position = vertexPosition * gameObject.modelMatrix * camera.viewProjMatrix;
+  gl_Position = vertexPosition * gameObject.modelMatrix * scene.shadowMatrix* camera.viewProjMatrix;
 }
 `;

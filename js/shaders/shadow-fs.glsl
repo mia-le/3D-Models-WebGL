@@ -12,12 +12,12 @@ uniform struct{
 } material;
 
   uniform struct {
+    mat4 shadowMatrix;
     float time;
   } scene;
 
   void main(void) {
 
-    fragmentColor = material.solidColor * cos(scene.time) * 0.01
-     + texture(material.colorTexture, tex.xy);
+    fragmentColor = vec4(0.0,0.0,0.0,1.0);
   }
 `;

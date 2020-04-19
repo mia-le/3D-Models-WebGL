@@ -5,7 +5,7 @@ const Globals = {
   glContext: null,
 
   // output "console.log" calls to the console?
-  enableLogging: false
+  enableLogging: true
 };
 
 Object.seal(Globals);

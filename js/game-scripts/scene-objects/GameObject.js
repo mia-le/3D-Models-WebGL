@@ -12,18 +12,11 @@ class GameObject extends UniformProvider {
     this.yaw = 0;
     this.scale = new Vec3(1, 1, 1);
 
+    this.noShadow = false;
+
     this.addComponentsAndGatherUniforms(mesh); // defines this.modelMatrix
   }
 
-  /*
-        !!! Modify GameObject inside parameters !!!
-        this.gameObjects.push(new GameObject(..).apply((me) => {
-            me.position.set(1,1,1);
-            me.orientation = 90;
-            ...
-        });
-
-   */
   apply(fnc) {
   	fnc(this);
   	return this;
@@ -34,14 +27,14 @@ class GameObject extends UniformProvider {
         if(keyPressed["UP"] ===true){
             moveVec.y= 0.01;
         }
-        if(keyPressed["DOWN"]===true){
+        if(keyPressed["DOWN"]===true && this.position.y > 0.001){
             moveVec.y -= 0.01;
         }
         if(keyPressed["LEFT"]===true){
-            moveVec.x = 0.01;
+            moveVec.x -= 0.01;
         }
         if(keyPressed["RIGHT"] ===true){
-            moveVec.x -= 0.01;
+            moveVec.x = 0.01;
         }
         this.position.add(moveVec);
     }

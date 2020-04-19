@@ -16,6 +16,9 @@ class Scene extends UniformProvider {
 		this.timeAtFirstFrame = new Date().getTime();
 		this.timeAtLastFrame = this.timeAtFirstFrame;
 
+		this.light = new Vec3(0.5,-0.5,0.5);
+		this.shadowMatrix = new Mat4();
+
 		gl.enable(gl.DEPTH_TEST);
 
 		this.LoadScene();
@@ -24,22 +27,39 @@ class Scene extends UniformProvider {
 	LoadScene() {
 		this.avatar = new GameObject(Meshes.slowpoke, `slowpoke`);
 		this.addGameObject(this.avatar);
-		this.avatar.position.set(-0.5,-0.1,0.0);
+		this.avatar.position.set(0.0,0.0,0.0);
 		this.avatar.scale.set(0.03,0.03,0.03);
 		this.avatar.yaw = 1.5;
 
+
 		this.woodAvatar = new GameObject(Meshes.woodBall, `woodSlowpoke`);
 		this.addGameObject(this.woodAvatar);
-		this.woodAvatar.position.set(-0.25,-0.1,0.0);
+		this.woodAvatar.position.set(0.7,0.1,0.0);
 		this.woodAvatar.scale.set(0.03,0.03,0.03);
 		this.woodAvatar.yaw = 1.5;
 
 		this.fullViewport = new GameObject(Meshes.heroesBackground, `heroes_cube`);
 		this.fullViewport.update = () => {};
 		this.addGameObject(this.fullViewport);
+		this.fullViewport.noShadow = true;
+
+		this.ground = new GameObject(Meshes.Ground, `ground`);
+		this.addGameObject(this.ground);
+		this.ground.position.set(0.0,0.000001,0.0);
+		this.ground.noShadow = true;
+
 
 		this.camera = new PerspectiveCamera(...this.programs);
+		this.camera.parent = this.avatar;
 		this.addComponentsAndGatherUniforms(...this.programs);
+
+		this.shadowMatrix = new Mat4(
+			1 ,    0    ,      0       ,   0,
+			-this.light.x/this.light.y,  0 ,-this.light.z/this.light.y,   0,
+			0    ,    0    ,  1 ,  0,
+			0    ,    0.001    ,  0 ,   1
+		);
+
 	}
 
 	onAllGameObjects(fnc) {
@@ -105,6 +125,12 @@ class Scene extends UniformProvider {
 		this.onAllGameObjects((x) => {
 			// draw the GameObject
 			x.draw(this, this.camera);
+		});
+
+		this.onAllGameObjects((x) => {
+			if(!x.noShadow){ // ground, background need no shadow
+				x.using(Materials.Shadow()).draw(this, this.camera);
+			}
 		});
 	}
 }

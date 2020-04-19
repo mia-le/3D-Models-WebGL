@@ -4,7 +4,7 @@ class PerspectiveCamera extends UniformProvider {
   constructor(...programs) {
 
     super("camera");
-    this.position = new Vec3(0, 0, 0);
+    this.position = new Vec3(0.5, 0.5, 1.0);
     this.roll = 0;
     this.pitch = 0;
     this.yaw = 0;
@@ -27,10 +27,12 @@ class PerspectiveCamera extends UniformProvider {
 
     this.rotationMatrix = new Mat4();
     this.viewProjMatrix = new Mat4();
+    this.parent = null;
+
     this.update();
 
     this.addComponentsAndGatherUniforms(...programs);
-
+    console.log(this.parent);
   }
 
   update() {
@@ -39,10 +41,20 @@ class PerspectiveCamera extends UniformProvider {
     rotate(this.pitch, 1, 0, 0).
     rotate(this.yaw, 0, 1, 0);
 
+    if(this.parent !== null){
+      this.parent.update();
     this.viewProjMatrix.
     set(this.rotationMatrix).
+    mul(this.parent.modelMatrix).
     translate(this.position).
-    invert();
+    invert();}
+    else{
+      this.viewProjMatrix.
+      set(this.rotationMatrix).
+      translate(this.position).
+      invert();
+    }
+
 
     const yScale = 1.0 / Math.tan(this.fov * 0.5);
     const xScale = yScale / this.aspect;
@@ -52,13 +64,23 @@ class PerspectiveCamera extends UniformProvider {
         xScale ,    0    ,      0       ,   0,
         0    ,  yScale ,      0       ,   0,
         0    ,    0    ,  (n+f)/(n-f) ,  -1,
-        0    ,    0    ,  2*n*f/(n-f) ,   0));
+        0    ,    0    ,  2*n*f/(n-f) ,   0))
+    ;
 
+    if(this.parent !== null){
+      this.parent.update();
     this.rayDirMatrix.
     set().
+    translate(this.parent.position).
     translate(this.position).
     mul(this.viewProjMatrix).
-    invert();
+    invert();} else{
+      this.rayDirMatrix.
+      set().
+      translate(this.position).
+      mul(this.viewProjMatrix).
+      invert();
+    }
 
   }
 

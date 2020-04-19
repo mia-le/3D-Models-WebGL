@@ -17,10 +17,19 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 		return new TexturedQuadGeometry(gl);
 	};
 
+	Geometries.GroundQuad = () => {
+		return new GroundGeometry(gl);
+	};
+
 	// Load Materials
 	Materials.Textured = (textureName) => {
 		const mat = new Material(Programs.Textured);
 		mat.colorTexture.set(new Texture2D(gl, textureName));
+		return mat;
+	};
+
+	Materials.Shadow = () => {
+		const mat = new Material(Programs.Shadow);
 		return mat;
 	};
 
@@ -41,6 +50,11 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 		return mat;
 	};
 
+	Materials.TiledTexture = (textureName) => {
+		const mat = new Material(Programs.Ground);
+		mat.colorTexture.set(new Texture2D(gl, textureName));
+		return mat;
+	}
 
 	//create Meshes
 
@@ -69,4 +83,8 @@ function LoadGeometryMaterialsAndMeshes(gl) {
 	    Geometries.TexturedQuad()
 	)
 
+	Meshes.Ground = new Mesh(
+		Materials.TiledTexture('media/stone-tile.png'),
+	    Geometries.GroundQuad()
+	)
 }
